@@ -79,7 +79,7 @@ func NewCliApp() *cli.App {
 		},
 		cli.BoolFlag{
 			Name:   FlagEnableTLS,
-			Usage:  "Enable TLS by host from address",
+			Usage:  "Enable TLS",
 			EnvVar: "TEMPORAL_CLI_TLS",
 		},
 		cli.StringFlag{
