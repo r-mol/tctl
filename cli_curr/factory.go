@@ -184,6 +184,7 @@ func (b *clientFactory) createTLSConfig(c *cli.Context) (*tls.Config, error) {
 	caPath := c.GlobalString(FlagTLSCaPath)
 	disableHostNameVerification := c.GlobalBool(FlagTLSDisableHostVerification)
 	serverName := c.GlobalString(FlagTLSServerName)
+	enableTLS := c.GlobalBool(FlagEnableTLS)
 
 	var host string
 	var cert *tls.Certificate
@@ -228,7 +229,7 @@ func (b *clientFactory) createTLSConfig(c *cli.Context) (*tls.Config, error) {
 		return tlsConfig, nil
 	}
 	// If we want to set the TLS server name for DNS resolution as host from the given address
-	if c.Bool(FlagEnableTLS) {
+	if enableTLS {
 		hostPort := c.GlobalString(FlagAddress)
 		if hostPort == "" {
 			hostPort = localHostPort
