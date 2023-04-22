@@ -236,7 +236,7 @@ func (b *clientFactory) createTLSConfig(c *cli.Context) (*tls.Config, error) {
 	}
 	// If we are given a TLS flag, set the TLS server name from address for DNS resolution
 	if enableTLS {
-		hostPort := c.String(FlagAddress)
+		hostPort := c.GlobalString(FlagAddress)
 		if hostPort == "" {
 			hostPort = localHostPort
 		}
