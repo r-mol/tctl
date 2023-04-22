@@ -202,10 +202,13 @@ func (b *clientFactory) createTLSConfig(c *cli.Context) (*tls.Config, error) {
 	caPath := c.String(FlagTLSCaPath)
 	disableHostNameVerificationS := c.String(FlagTLSDisableHostVerification)
 	disableHostNameVerification, err := strconv.ParseBool(disableHostNameVerificationS)
-	enableTLS := c.Bool(FlagEnableTLS)
-
 	if err != nil {
 		return nil, fmt.Errorf("unable to read TLS disable host verification flag: %w", err)
+	}
+	enableTLSS := c.String(FlagEnableTLS)
+	enableTLS, err := strconv.ParseBool(enableTLSS)
+	if err != nil {
+		return nil, fmt.Errorf("unable to read TLS flag: %w", err)
 	}
 
 	serverName := c.String(FlagTLSServerName)
